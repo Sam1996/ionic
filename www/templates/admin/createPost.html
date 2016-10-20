@@ -1,0 +1,18 @@
+<ion-view view-title="Create post">
+  <ion-content class="padding">
+    <form class="post-form">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="Title" ng-model="postData.Title">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="Sub title" ng-model="postData.subTitle">
+        </label>
+        <label class="item item-input">
+          <textarea placeholder="Post" rows="10" ng-model="postData.Message"></textarea>
+        </label>
+      </div>
+        <button class="button button-block button-energized" ng-click="publish(postData)">Publish</button>
+    </form>
+  </ion-content>
+</ion-view>

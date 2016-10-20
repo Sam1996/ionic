@@ -1,0 +1,23 @@
+<ion-view view-title="Donor">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="search">
+      </label>
+
+      <li class="item item-avatar" ng-repeat="donor in donors | filter : search" ng-show="donor.wish">
+        <img src="img/bloodgroup/{{donor.bloodgroup}}.png" alt="{{donor.bloodgroup}}" />
+        <h2 class="donor-name">{{donor.username}}</h2>
+        <p><i class="icon ion-email red-icon"></i>&nbsp; &nbsp;{{donor.email}}</p>
+        <p><i class="icon ion-android-call red-icon"></i>&nbsp; &nbsp;{{donor.phone}}</p>
+        <!--<div class="location">
+          <i class="icon ion-location red-icon"></i>
+          <p>
+            &nbsp; &nbsp;{{donor.city}}, {{donor.district}}, {{donor.state}}
+          </p>
+        </div>-->
+      </li>
+    </div>
+  </ion-content>
+</ion-view>

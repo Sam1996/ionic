@@ -1,0 +1,118 @@
+/* Empty. Add your own CSS if you like */
+.questionText{
+  color: #ef473a;
+}
+.myRequestContent{
+  background: #ecf0f1;
+}
+.red-icon{
+  color: #ef473a;
+}
+.green-icon{
+  color: #33cd5f;
+}
+.icon.card-icon{
+  font-size: 18px;
+}
+.card-footer{
+  background: #ffffff;
+  color: #3a3a3a;
+}
+.card-item p strong{
+  color: #34465d;
+}
+.pull-right{
+  position: relative;
+  right: 0;
+}
+.item-text-wrap p {
+  font-size: 14px;
+}
+.card-footer .button{
+  margin:0px;
+}
+.menu-icon i.icon{
+  font-size: 18px;
+  color : #34465d;
+}
+.menu-list .menu-item-list{
+  border: none;
+  font-size: 14px;
+}
+.menu-list .menu-item-list a{
+  padding-top:12px;
+  padding-bottom: 12px;
+}
+.loginForm{
+  /*display: flex;
+  align-self: center;
+  align-content: space-around;
+  flex-direction: column;
+  justify-content: center;*/
+  background: url('img/bg.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.loginForm form{
+  position: absolute;
+  width: 100%;
+  margin-top: 60%;
+
+}
+.profileBackground{
+  min-height: 145px;
+  background: url('img/menu.jpg');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.profileBackground h4 {
+  color: #ddd;
+  opacity: 0.7;
+}
+.donor-name{
+  color : #34465d;
+}
+.location i{
+  float: left;
+}
+.location p{
+  float: left;
+}
+.header{
+  min-height: 175px;
+  max-height: 175px;
+  background: url('img/redback.jpg');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.text-white{
+  color: #f7f7f7;
+  opacity: 0.7;
+  font-weight: medium;
+  font-size: 18px
+}
+.text-white small{
+  font-size: 11px;
+}
+.body .item{
+  border:none;
+}
+.body .item .icon{
+  font-size: 20px;
+}
+.postPage{
+    background: #ecf0f1;
+}
+.post{
+    margin-top:0px !important;
+}
+.post-footer{
+    background: #ffffff;
+}

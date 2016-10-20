@@ -1,0 +1,45 @@
+<ion-view view-title="Users">
+  <ion-content>
+    <div class="header">
+      <p class="text-white" align="center">{{recepients[whichItem].username}}<br>
+      <small ng-show="recepients[whichItem].wish">Donor /</small><small> Recepient</small></p>
+    </div>
+    <div class="body">
+      <div class="list">
+        <div class="item item-icon-left">
+          <i class="icon red-icon ion-ios-location"></i>
+          <p>
+            {{recepients[whichItem].city}}, {{recepients[whichItem].district}}, {{recepients[whichItem].state}}
+          </p>
+        </div>
+        <div class="item item-icon-left">
+          <i class="icon red-icon ion-android-mail"></i>
+          <p>
+            {{recepients[whichItem].email}}
+          </p>
+        </div>
+        <div class="item item-icon-left">
+          <i class="icon red-icon ion-ios-telephone"></i>
+          <p>
+            <strong>{{recepients[whichItem].phone}}</strong>
+          </p>
+        </div>
+        {{phoneNumber}}
+      </div>
+    </div>
+    <div class="bar bar-footer">
+      <div class="col-33" align="center">
+        <a class="button button-clear button-positive" href="#/admin/editUserProfile/{{whichItem}}"><i class="icon ion-ios-color-wand"></i></a>
+      </div>
+      <div class="col-33" align="center">
+        <a class="button button-clear button-balanced" href="tel:{{recepients[whichItem].phone}}"><i class="icon ion-ios-telephone"></i></a>
+      </div>
+      <!--<div class="col-25" align="center">
+        <button class="button button-clear button-energized" ng-click="writeSms()"><i class="icon ion-android-textsms"></i></button>
+      </div>-->
+      <div class="col-33" align="center">
+        <button class="button button-clear button-assertive" ng-click="delete()"><i class="icon ion-trash-b"></i></button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,70 @@
+<ion-side-menus  reload='true' enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-assertive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-content>
+      <div class="profileBackground">
+        <h4>
+          Hi Admin!
+        </h4>
+      </div>
+      <ion-list class="menu-list">
+        <ion-item menu-close href="#/login" class="item-icon-left menu-icon menu-item-list" ng-show="isLoggedin">
+          <i class="icon ion-log-in"></i>
+          Login
+        </ion-item>
+        <!--<ion-item menu-close href="#/signup" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-ios-compose"></i>
+          Signup
+        </ion-item>
+        <ion-item menu-close href="#/app/editProfile" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-edit"></i>
+          Edit Profile
+        </ion-item>-->
+          <ion-item menu-close href="#/admin/home" class="item-icon-left menu-icon menu-item-list">
+              <i class="icon ion-compose"></i>
+              Posts
+          </ion-item>
+        <ion-item menu-close href="#/admin/requests" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-clipboard"></i>
+          All Requests
+        </ion-item>
+        <ion-item menu-close href="#/admin/urgentRequests" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-android-alarm-clock"></i>
+          Urgent Requests
+        </ion-item>
+        <!--<ion-item menu-close href="#/app/playlists" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-plus-circled"></i>
+          Make Request
+        </ion-item>-->
+        <ion-item menu-close href="#/admin/donorList" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-ios-list"></i>
+          Donors list
+        </ion-item>
+        <ion-item menu-close href="#/admin/recepientList" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-ios-list-outline"></i>
+          Recepients list
+        </ion-item>
+        <ion-item menu-close href="#/admin/createPost" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-ios-compose"></i>
+          Create post
+        </ion-item>
+        <ion-item menu-close ng-click="logout()" class="item-icon-left menu-icon menu-item-list">
+          <i class="icon ion-log-out"></i>
+          Logout
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

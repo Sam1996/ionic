@@ -1,0 +1,70 @@
+<ion-view view-title="Make request">
+  <ion-content class="padding">
+    <!--<ion-list>
+      <ion-item ng-repeat="playlist in playlists" href="#/app/playlists/{{playlist.id}}">
+        {{playlist.title}}
+      </ion-item>
+    </ion-list>-->
+
+    <form class="requestForm">
+
+      <div class="list">
+        <label class="item item-input">
+          <span class="input-label">Patient Name</span>
+          <input type="text" ng-model="requestData.username">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Patient Attendee</span>
+          <input type="text" ng-model="requestData.attendeeName">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Attendee Number</span>
+          <input type="tel" ng-model="requestData.attendeeNumber">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">State</span>
+          <input type="text" ng-model="requestData.state">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">District</span>
+          <input type="text" ng-model="requestData.district">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">City</span>
+          <input type="text" ng-model="requestData.city">
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Hospital Name</span>
+          <input type="text" ng-model="requestData.hospitalName">
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Blood group
+          </div>
+          <select ng-model="requestData.bloodgroup">
+            <option value="A+ve">A+ve</option>
+            <option value="A-ve">A-ve</option>
+            <option value="B+ve">B+ve</option>
+            <option value="B-ve">B-ve</option>
+            <option value="AB+ve">AB+ve</option>
+            <option value="AB-ve">AB-ve</option>
+            <option value="O+ve">O+ve</option>
+            <option value="O-ve">O-ve</option>
+          </select>
+        </label>
+        <li class="item item-toggle">
+           Urgent?
+           <label class="toggle toggle-balanced">
+             <input type="checkbox" ng-init="requestData.urgent = true" ng-model="requestData.urgent">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+          <button class="button button-block button-assertive button-outline" ng-click="request(requestData)">Make request</button>
+      </div>
+
+    </form>
+
+  </ion-content>
+</ion-view>

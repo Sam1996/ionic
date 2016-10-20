@@ -1,0 +1,70 @@
+<ion-view view-title="Edit user profile">
+  <!--<ion-header-bar>
+    <h1 class="title">Login</h1>
+    <div class="buttons">
+      <button class="button button-clear" ng-click="closeLogin()">Close</button>
+    </div>
+  </ion-header-bar>-->
+  <ion-content class="padding">
+    <form >
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" ng-model="username" placeholder="New User Name" >
+        </label>
+        <label class="item item-input">
+          <input type="email" ng-model="email" placeholder="New E-Mail" >
+        </label>
+        <label class="item item-input">
+          <input type="tel" ng-model="phone" placeholder="New Phone" >
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="state" placeholder="New State" >
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="district" placeholder="New District" >
+        </label>
+        <label class="item item-input">
+          <input type="text" ng-model="city" placeholder="New City" >
+        </label>
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Blood group
+          </div>
+          <select ng-model="bloodgroup">
+            <option value="A+ve">A+ve</option>
+            <option value="A-ve">A-ve</option>
+            <option value="B+ve">B+ve</option>
+            <option value="B-ve">B-ve</option>
+            <option value="AB+ve">AB+ve</option>
+            <option value="AB-ve">AB-ve</option>
+            <option value="O+ve">O+ve</option>
+            <option value="O-ve">O-ve</option>
+          </select>
+        </label>
+        <li class="item item-toggle">
+           Want direct communication?
+           <label class="toggle toggle-balanced">
+             <input type="checkbox" ng-init="communication = communication" ng-model="communication">
+             <div class="track">
+               <div class="handle"></div>
+             </div>
+           </label>
+        </li>
+          <li class="item item-toggle">
+             Wish to be a donor ?
+             <label class="toggle toggle-balanced">
+               <input type="checkbox" ng-init="wish = wish" ng-model="wish">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+             </label>
+          </li>
+        <label class="item item-input">
+          <input type="password" ng-model="password" placeholder="Password" >
+        </label>
+          <button class="button button-full button-assertive" ng-click="editProfile(username,email,phone,state,district,city,bloodgroup,communication,wish,password)">Update Profile</button>
+      </div>
+    </form>
+
+  </ion-content>
+</ion-view>

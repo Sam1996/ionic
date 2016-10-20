@@ -1,0 +1,28 @@
+<ion-view view-title="Donor List">
+  <ion-content>
+    <div class="list" can-swipe="listCanSwipe">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="search">
+      </label>
+
+    <ion-list show-delete="shouldShowDelete" show-reorder="shouldShowReorder" can-swipe="listCanSwipe">
+      <ion-item ng-repeat="donor in donors | filter : search" ng-show="donor.wish" class="item-avatar" href="#/admin/donorList/{{donors.indexOf(donor)}}">
+
+        <img ng-src="img/bloodgroup/{{donor.bloodgroup}}.png" alt="{{donor.bloodgroup}}">
+        <h2 class="donor-name">{{donor.username}}</h2>
+        <p><i class="icon ion-email red-icon"></i>&nbsp; &nbsp;{{donor.email}}</p>
+        <p><i class="icon ion-android-call red-icon"></i>&nbsp; &nbsp;{{donor.phone}}</p>
+        <!--<div class="location">
+          <i class="icon ion-location red-icon"></i>
+          <p>
+            &nbsp; &nbsp;{{donor.city}}, {{donor.district}}, {{donor.state}}
+          </p>
+        </div>-->
+        <ion-option-button class="button-assertive" ng-click="delete(donor)"><i class="icon ion-ios-trash"></i></ion-option-button>
+        <!--<ion-delete-button class="ion-minus-circled" ng-click="items.splice($index, 1)"></ion-delete-button>-->
+
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

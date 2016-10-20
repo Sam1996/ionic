@@ -1,0 +1,51 @@
+<ion-view view-title="Users - Donors">
+    <ion-content>
+        <div class="header">
+            <p class="text-white" align="center">{{donors[whichItem].username}}<br>
+                <small ng-show="donors[whichItem].wish">Donor /</small><small> Recepient</small></p>
+        </div>
+        <div class="body">
+            <div class="list">
+                <div class="item item-icon-left">
+                    <i class="icon red-icon ion-ios-location"></i>
+                    <p>
+                        {{donors[whichItem].city}}, {{donors[whichItem].district}}, {{donors[whichItem].state}}
+                    </p>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon red-icon ion-android-mail"></i>
+                    <p>
+                        {{donors[whichItem].email}}
+                    </p>
+                </div>
+                <div class="item item-icon-left">
+                    <i class="icon red-icon ion-ios-telephone"></i>
+                    <p>
+                        <strong>{{donors[whichItem].phone}}</strong>
+                    </p>
+                </div>
+                <!--<div class="item item-icon-left">
+                  <i class="icon red-icon ion-clipboard"></i>
+                  <div ng-repeat="request in requests | filter :{currentUser : donors[whichItem].phone}">
+                    <h4>{{request.username}}</h4>
+                    <p><b>Requested for : </b>{{request.bloodgroup}}</p>
+                  </div>
+                </div>-->
+            </div>
+        </div>
+        <div class="bar bar-footer">
+            <div class="col-33" align="center">
+                <a class="button button-clear button-positive" href="#/admin/editUserProfile/{{whichItem}}"><i class="icon ion-ios-color-wand"></i></a>
+            </div>
+            <div class="col-33" align="center">
+                <a class="button button-clear button-balanced" href="tel:{{donors[whichItem].phone}}"><i class="icon ion-ios-telephone"></i></a>
+            </div>
+            <!--<div class="col-25" align="center">
+                <button class="button button-clear button-energized" ng-click="writeSms()"><i class="icon ion-android-textsms"></i></button>
+            </div>-->
+            <div class="col-33" align="center">
+                <button class="button button-clear button-assertive" ng-click="delete()"><i class="icon ion-trash-b"></i></button>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

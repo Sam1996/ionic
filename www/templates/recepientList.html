@@ -1,0 +1,25 @@
+<ion-view view-title="Recepients">
+  <ion-content>
+    <div class="list">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="search">
+      </label>
+
+      <ion-list>
+        <ion-item class="item item-avatar" ng-repeat="recepient in recepients | filter : search">
+        <img src="img/bloodgroup/{{recepient.bloodgroup}}.png" alt="{{recepient.bloodgroup}}" />
+        <h2 class="recepient-name">{{recepient.username}}</h2>
+        <p><i class="icon ion-email red-icon"></i>&nbsp; &nbsp;{{recepient.email}}</p>
+        <p><i class="icon ion-android-call red-icon"></i>&nbsp; &nbsp;{{recepient.phone}}</p>
+        <!--<div class="location">
+          <i class="icon ion-location red-icon"></i>
+          <p>
+            &nbsp; &nbsp;{{recepient.city}}, {{recepient.district}}, {{recepient.state}}
+          </p>
+        </div>-->
+      </ion-item>
+      </ion-list>
+    </div>
+  </ion-content>
+</ion-view>
