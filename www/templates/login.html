@@ -7,16 +7,22 @@
   </ion-header-bar>-->
   <ion-content class="padding loginForm">
     <form>
+      <div class="logo">
+          <h4>Blood Donation</h4>
+        </div>
       <div class="list">
+
         <label class="item item-input">
           <input type="text" ng-model="loginData.phone" placeholder="Phone Number">
         </label>
         <label class="item item-input">
           <input type="password" ng-model="loginData.password" placeholder="Password">
         </label>
-          <button class="button button-block button-energized" ng-click="login(loginData)">Log in</button>
-          <a href="#/signup" class="button button-outline button-light button-block">Dont have an account yet? sign up!</a>
+          
       </div>
+      <ion-checkbox ng-model="remember">Remember me</ion-checkbox>
+      <button class="button button-block button-energized" ng-click="login(loginData)">Log in</button>
+      <a href="#/signup" class="button button-outline button-light button-block">Dont have an account yet? sign up!</a>
     </form>
   </ion-content>
 </ion-view>

@@ -50,14 +50,14 @@ ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',funct
           document.addEventListener("deviceready",function(){
               var message = 'Request from :' + username + 'Patient Name :' + patientName + 'Attendee :' + attendee + 'Requested for blood :' + bloodgroup + 'Attendee Number :' + attendeeNumber + 'Hospital :' + hospital;
               var options = {
-                  replaceLineBreaks: false,
+                  replaceLineBreaks: true,
                   android:{
                       intent : 'INTENT'
                       //intent : ''
                   }
               };
               $cordovaSms.send('9487354083',message, options).then(function(){
-                  alert("success! sms was sent");
+                  //alert("success! sms was sent");
               },function(error){
                   console.log(error);
                   alert(error);
@@ -93,7 +93,7 @@ $scope.loginData = {
 })
 
 
-.controller('signupController', function($scope, $stateParams, AuthService, data) {
+.controller('signupController', function($scope, $stateParams, AuthService, data,$http) {
 
   $scope.signupData = {};
 
@@ -116,6 +116,16 @@ $scope.loginData = {
 
   $scope.signupData = {};
   $scope.SignedInUsers = data;
+
+  $http.get('../js/area.json').success(function(data){
+    $scope.Areas = data;
+  });
+  $http.get('../js/districts.json').success(function(data){
+    $scope.Districts = data;
+  });
+  $http.get('../js/states.json').success(function(data){
+    $scope.States = data;
+  });
 
 })
 
@@ -146,30 +156,12 @@ $scope.loginData = {
     $scope.delete = function(){
         return $scope.recepients.$remove($scope.recepients[$scope.whichItem]);
     }
-    $scope.writeSms = function(){
-      document.addEventListener("deviceready",function(){
-        var phoneNumber = $scope.recepients[$scope.whichItem].phone;
-        var options = {
-          replaceLineBreaks: false,
-          android:{
-            intent : 'INTENT',
-            //intent : ''
-          }
-        };
-        $cordovaSms.send(phoneNumber,'', options).then(function(){
-          alert("success! sms was sent");
-        },function(error){
-          console.log(error);
-          alert(error);
-        });
-      });
-    }
     $scope.requests = reqData;
 
 })
 
 
-.controller('profileController', function($scope, $stateParams,data, $firebaseArray,$rootScope,profileService) {
+.controller('profileController', function($scope, $stateParams,data, $firebaseArray,$rootScope,profileService,$http) {
 
   var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'newUser');
   ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',function(snapshot){
@@ -197,6 +189,16 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
   var password = password;
   profileService.edit(username,email,phone,state,district,city,bloodgroup,communication,wish,password);
 }
+
+$http.get('../js/area.json').success(function(data){
+    $scope.Areas = data;
+  });
+  $http.get('../js/districts.json').success(function(data){
+    $scope.Districts = data;
+  });
+  $http.get('../js/states.json').success(function(data){
+    $scope.States = data;
+  });
 
 })
 
@@ -243,9 +245,10 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
     $scope.delete = function(request){
       return $scope.requests.$remove(request);
     }
+    $scope.listCanSwipe = true;
 })
 
-.controller('adminEditProfileController', function($scope, $stateParams,data, $firebaseArray,$rootScope,adminProfileService) {
+.controller('adminEditProfileController', function($scope,$http, $stateParams,data, $firebaseArray,$rootScope,adminProfileService) {
 
     $scope.whichItem = $stateParams.routeId;
     $scope.recepients = data;
@@ -276,11 +279,36 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
   adminProfileService.edit(username,email,phone,state,district,city,bloodgroup,communication,wish,password);
 }
 
+$http.get('/js/area.json').success(function(data){
+    $scope.Areas = data;
+  });
+  $http.get('/js/districts.json').success(function(data){
+    $scope.Districts = data;
+  });
+  $http.get('/js/states.json').success(function(data){
+    $scope.States = data;
+  });
+
+
+
 })
 
-.controller('PostController', function($scope, $stateParams ,postService) {
+.controller('PostController', function($scope, $rootScope, $cordovaImagePicker, $stateParams ,postService) {
         var date = new Date();
-        //var postDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+    $scope.getImage = function(){
+      var options = {
+       maximumImagesCount: 1,
+       width: 800,
+       height: 800,
+       quality: 80
+      };
+      $cordovaImagePicker.getPictures(options).then(function(result){
+        for (var i = 0; i < result.length; i++) {
+          console.log('Image URI: ' + results[i]);
+        }
+      });
+    }
     $scope.publish = function(postData){
         var title = postData.Title;
         var subTitle = postData.subTitle;

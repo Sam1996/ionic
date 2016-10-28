@@ -17,14 +17,29 @@
         <label class="item item-input">
           <input type="tel" ng-model="phone" placeholder="New Phone" >
         </label>
-        <label class="item item-input">
-          <input type="text" ng-model="state" placeholder="New State" >
+        <label class="item item-input item-select">
+          <div class="input-label">
+            State
+          </div>
+          <select ng-model="state">
+            <option ng-init="signupData.state = States[0].state" ng-repeat="state in States" value="{{state.state}}">{{state.state}}</option>
+          </select>
         </label>
-        <label class="item item-input">
-          <input type="text" ng-model="district" placeholder="New District" >
+        <label class="item item-input item-select">
+          <div class="input-label">
+            District
+          </div>
+          <select ng-model="district">
+            <option ng-repeat="district in Districts | filter : {state: state}" value="{{district.district}}">{{district.district}}</option>
+          </select>
         </label>
-        <label class="item item-input">
-          <input type="text" ng-model="city" placeholder="New City" >
+        <label class="item item-input item-select">
+          <div class="input-label">
+            City
+          </div>
+          <select ng-model="city">
+            <option ng-repeat="area in Areas | filter : {district: district}" value="{{area.city}}">{{area.city}}</option>
+          </select>
         </label>
         <label class="item item-input item-select">
           <div class="input-label">

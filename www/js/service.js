@@ -10,9 +10,11 @@ angular.module('starter.services', [])
 
     doSignup : function(username,email,phone,state,district,city,bloodgroup,communication,wish,password){
 
-      ref.orderByChild("phone").startAt(phone).endAt(phone).on('value',function(snapshot){
-        var alreadySignedIn = snapshot.val();
-        if(alreadySignedIn){
+      
+      ref.orderByChild("phone").equalTo(phone).on('value',function(snapshot){
+        $rootScope.alreadySignedIn = snapshot.val();
+      })
+        if($rootScope.alreadySignedIn){
           $ionicPopup.alert({
             title:'Error Signing In',
             template:'User already exists! try logging in!'
@@ -40,13 +42,12 @@ angular.module('starter.services', [])
           }).then(function(){
             ref.on("child_added", function(snapshot) {
               var signedUsers = snapshot.val();
-              console.log(signedUsers);
+              //console.log(signedUsers);
             }, function (errorObject) {
               console.log("The read failed: " + errorObject.code);
             });
           });
         }
-      })
 
 
     },
@@ -81,7 +82,7 @@ angular.module('starter.services', [])
           }
 
           else if(password == 'appadmin123' && phone == '123456789'){
-            $state.go('admin.requests');
+            $state.go('admin.home');
             console.log('success');
           }
           else{

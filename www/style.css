@@ -116,3 +116,22 @@
 .post-footer{
     background: #ffffff;
 }
+.logo h4{
+  position: relative;
+  top: -70px;
+  color: #ffffff;
+  text-align: center;
+}
+.loginForm .item-checkbox{
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.urgent{
+  color: red;
+}
+.notUrgent{
+  color: green;
+}
