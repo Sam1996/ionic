@@ -8,8 +8,8 @@
       <ion-item class="item-avatar"  ng-repeat="request in requests | filter : search" ng-show="request.urgency">
         <img ng-src="img/bloodgroup/{{request.bloodgroup}}.png">
         <h2 class="donor-name">{{request.patientName}}
-          <span class="item-note urgent" ng-show="request.urgency">Urgent</span>
-          <span class="item-note notUrgent" ng-hide="request.urgency">Not Urgent</span>
+          <span class="item-note urgent" ng-show="request.urgency"><i class="icon ion-android-alarm-clock"></i></span>
+          <span class="item-note notUrgent" ng-hide="request.urgency"><i class="icon ion-android-alarm-clock"></i></span>
         </h2>
         <div class="row">
           <p class="col-50"><strong><i class="icon ion-person-stalker"></i></strong> &nbsp;&nbsp; {{request.attendee}}</p>

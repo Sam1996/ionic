@@ -20,7 +20,10 @@
         </label>
           
       </div>
-      <ion-checkbox ng-model="remember">Remember me</ion-checkbox>
+      <ion-checkbox ng-init="loginData.remember = true" ng-model="loginData.remember" >Remember me</ion-checkbox>
+      <!--<div ng-controller="PostController">
+        <button class="button button-block button-stable" ng-click="addData()">Add Data</button>
+      </div>-->
       <button class="button button-block button-energized" ng-click="login(loginData)">Log in</button>
       <a href="#/signup" class="button button-outline button-light button-block">Dont have an account yet? sign up!</a>
     </form>

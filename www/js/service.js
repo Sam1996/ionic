@@ -52,7 +52,7 @@ angular.module('starter.services', [])
 
     },
 
-    doLogin : function(phone,password){
+    doLogin : function(phone,password,remembered){
       //$rootScope.userData = [];
       ref.orderByChild("phone")
         .startAt(phone).endAt(phone)
@@ -71,6 +71,16 @@ angular.module('starter.services', [])
                 $rootScope.isLoggedin = true;
                 $state.go('app.home');
                 console.log('success! logged in as : ' + currentUser);
+                if(remembered == true){
+                  window.localStorage.setItem('isRemembered',remembered);
+                  window.localStorage.setItem('rememberedPhone',phone);
+                  window.localStorage.setItem('rememberedPassword',password);
+                }
+                else if(remembered == false){
+                  window.localStorage.setItem('isRemembered',remembered);
+                  window.localStorage.removeItem('rememberedPhone');
+                  window.localStorage.removeItem('rememberedPassword'); 
+                }
               }
               else{
                 $ionicPopup.alert({
@@ -92,13 +102,15 @@ angular.module('starter.services', [])
             });
             console.log('No user found');
           }
-
-
       });
     },
 
     logout : function(){
       var loggedout = window.localStorage.removeItem('currentUser');
+      $rootScope.isRemembered = window.localStorage.getItem('isRemembered');
+      $rootScope.loginData = {
+        "remember" : $rootScope.isRemembered
+      }
       console.log(loggedout);
     }
 

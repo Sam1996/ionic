@@ -29,7 +29,7 @@ ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',funct
 
 })
 
-  .controller('requestCtrl', function($scope,AuthService,RequestService,$cordovaSms,$ionicPopup) {
+  .controller('requestCtrl', function($scope,AuthService,RequestService,$cordovaSms,$ionicPopup, $firebaseArray) {
 
     $scope.request = function(requestData){
       var username = window.localStorage.getItem('currentUser');
@@ -74,26 +74,62 @@ ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',funct
 
     }
 
+    //area reference
+    var areaRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Areas');
+    var areas = $firebaseArray(areaRef);
+    //districts refference
+    var distRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Districts');
+    var districts = $firebaseArray(distRef);
+    //States reference
+    var stateRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'States');
+    var states = $firebaseArray(stateRef);
+
+      $scope.Areas = areas;
+      $scope.Districts = districts;
+      $scope.States = states;
 
   })
 
 .controller('loginController', function($scope, $stateParams,AuthService,$rootScope) {
 
+var isRemembered = window.localStorage.getItem('isRemembered');
+var rememberedPhone = window.localStorage.getItem('rememberedPhone');
+var rememberedPassword = window.localStorage.getItem('rememberedPassword');
+console.log("Is remembered ?"+ " " + isRemembered + ", " + rememberedPhone + ", " + rememberedPassword);
+
+$scope.remember = isRemembered;
+
+$scope.loginData = {
+  "phone" : rememberedPhone,
+  "password" : rememberedPassword,
+  "remember" : isRemembered
+}
+
 $scope.login = function(loginData){
   var phone = loginData.phone;
   var password = loginData.password;
+  var remembered = loginData.remember;
 
-  AuthService.doLogin(phone,password);
+  AuthService.doLogin(phone,password,remembered);
 
 }
-$scope.loginData = {
-  phone : '',
-  password : ''
-};
+
+
+  /*$scope.rememberMe = function(loginData){
+    if(loginData.remember == true){
+      window.localStorage.setItem('remembered',loginData.remember);
+      $rootScope.rememberValue = window.localStorage.getItem('remembered');
+      $rootScope.loginData= {
+        "remember" : false
+      }
+      console.log($rootScope.loginData.remember);
+    }
+  }*/
+
 })
 
 
-.controller('signupController', function($scope, $stateParams, AuthService, data,$http) {
+.controller('signupController', function($scope, $stateParams, AuthService, data,$http, $firebaseArray) {
 
   $scope.signupData = {};
 
@@ -116,16 +152,19 @@ $scope.loginData = {
 
   $scope.signupData = {};
   $scope.SignedInUsers = data;
+  //area reference
+  var areaRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Areas');
+  var areas = $firebaseArray(areaRef);
+  //districts refference
+  var distRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Districts');
+  var districts = $firebaseArray(distRef);
+  //States reference
+  var stateRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'States');
+  var states = $firebaseArray(stateRef);
 
-  $http.get('../js/area.json').success(function(data){
-    $scope.Areas = data;
-  });
-  $http.get('../js/districts.json').success(function(data){
-    $scope.Districts = data;
-  });
-  $http.get('../js/states.json').success(function(data){
-    $scope.States = data;
-  });
+    $scope.Areas = areas;
+    $scope.Districts = districts;
+    $scope.States = states;
 
 })
 
@@ -190,15 +229,19 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
   profileService.edit(username,email,phone,state,district,city,bloodgroup,communication,wish,password);
 }
 
-$http.get('../js/area.json').success(function(data){
-    $scope.Areas = data;
-  });
-  $http.get('../js/districts.json').success(function(data){
-    $scope.Districts = data;
-  });
-  $http.get('../js/states.json').success(function(data){
-    $scope.States = data;
-  });
+//area reference
+  var areaRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Areas');
+  var areas = $firebaseArray(areaRef);
+  //districts refference
+  var distRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Districts');
+  var districts = $firebaseArray(distRef);
+  //States reference
+  var stateRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'States');
+  var states = $firebaseArray(stateRef);
+
+    $scope.Areas = areas;
+    $scope.Districts = districts;
+    $scope.States = states;
 
 })
 
@@ -279,23 +322,41 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
   adminProfileService.edit(username,email,phone,state,district,city,bloodgroup,communication,wish,password);
 }
 
-$http.get('/js/area.json').success(function(data){
-    $scope.Areas = data;
-  });
-  $http.get('/js/districts.json').success(function(data){
-    $scope.Districts = data;
-  });
-  $http.get('/js/states.json').success(function(data){
-    $scope.States = data;
-  });
+//area reference
+  var areaRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Areas');
+  var areas = $firebaseArray(areaRef);
+  //districts refference
+  var distRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Districts');
+  var districts = $firebaseArray(distRef);
+  //States reference
+  var stateRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'States');
+  var states = $firebaseArray(stateRef);
+
+    $scope.Areas = areas;
+    $scope.Districts = districts;
+    $scope.States = states;
 
 
 
 })
 
-.controller('PostController', function($scope, $rootScope, $cordovaImagePicker, $stateParams ,postService) {
+.controller('PostController', function($scope, $rootScope, $cordovaImagePicker, $stateParams ,postService, $firebaseArray, $http) {
         var date = new Date();
-
+    /*$scope.addData = function(){
+      $http.get('/js/districts.json').success(function(data){
+        $rootScope.Areas = data;
+      }).then(function(){
+        var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Districts');
+        var dataRef = $firebaseArray(ref);
+        var length = $rootScope.Areas.length;
+        for(var i=0; i<length ; i++){
+          dataRef.$add({
+            state: $rootScope.Areas[i].state,
+            district: $rootScope.Areas[i].district
+          });
+        }
+      });
+    }*/
     $scope.getImage = function(){
       var options = {
        maximumImagesCount: 1,
