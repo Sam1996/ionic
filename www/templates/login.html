@@ -24,8 +24,11 @@
       <!--<div ng-controller="PostController">
         <button class="button button-block button-stable" ng-click="addData()">Add Data</button>
       </div>-->
-      <button class="button button-block button-energized" ng-click="login(loginData)">Log in</button>
-      <a href="#/signup" class="button button-outline button-light button-block">Dont have an account yet? sign up!</a>
+      <button class="button button-full button-energized" ng-click="login(loginData)">Log in</button>
+      <div class="row">
+        <a href="#/signup" class="button button-clear button-light button-block col-50">Sign Up</a>
+        <a href="#/forgotPassword" class="button button-clear button-light button-block col-50">Forgot password</a>
+      </div>
     </form>
   </ion-content>
 </ion-view>

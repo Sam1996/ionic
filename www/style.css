@@ -135,3 +135,7 @@
 .notUrgent{
   color: green;
 }
+.label-balanced{
+  color: green;
+  font-size: 20px;
+}

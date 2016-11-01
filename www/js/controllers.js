@@ -23,16 +23,16 @@ var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'newUser');
 
 ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',function(snapshot){
   $scope.users = snapshot.val().communication;
-  $scope.thisUser = snapshot.val().username;
+  $rootScope.thisUser = snapshot.val().username;
   console.log($scope.users);
 })
 
 })
 
-  .controller('requestCtrl', function($scope,AuthService,RequestService,$cordovaSms,$ionicPopup, $firebaseArray) {
+  .controller('requestCtrl', function($scope,$rootScope,AuthService,RequestService,$cordovaSms,$ionicPopup, $firebaseArray) {
 
     $scope.request = function(requestData){
-      var username = window.localStorage.getItem('currentUser');
+      var username = $rootScope.thisUser;//window.localStorage.getItem('currentUser');
       var patientName = requestData.username;
       var attendee = requestData.attendeeName;
       var attendeeNumber = requestData.attendeeNumber;
@@ -340,7 +340,7 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
 
 })
 
-.controller('PostController', function($scope, $rootScope, $cordovaImagePicker, $stateParams ,postService, $firebaseArray, $http) {
+.controller('PostController', function($scope, $rootScope, $cordovaCamera, $stateParams ,postService, $firebaseArray, $http) {
         var date = new Date();
     /*$scope.addData = function(){
       $http.get('/js/districts.json').success(function(data){
@@ -357,18 +357,22 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
         }
       });
     }*/
+    $scope.images = [];
     $scope.getImage = function(){
       var options = {
-       maximumImagesCount: 1,
-       width: 800,
-       height: 800,
-       quality: 80
-      };
-      $cordovaImagePicker.getPictures(options).then(function(result){
-        for (var i = 0; i < result.length; i++) {
-          console.log('Image URI: ' + results[i]);
-        }
-      });
+            quality: 50,
+            destinationType: Camera.DestinationType.FILE_URI,
+            sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+            targetWidth: 200,
+            targetHeight: 200
+        };
+      $cordovaCamera.getPicture(options).then(function(imageUri) {
+            console.log('img', imageUri);
+            $scope.images.push(imageUri);
+                    
+        }, function(err) {
+            alert("Error");// error
+        });
     }
     $scope.publish = function(postData){
         var title = postData.Title;
@@ -389,5 +393,57 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
         }
 })
 
+
+.controller('passwordController', function($scope, $stateParams, $firebaseArray,$rootScope,randomString,$ionicPopup) {
+    var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + "newUser");
+    $scope.reset = function(resetData){
+      var phone = resetData.phone;
+      ref.orderByChild("phone").equalTo(phone).on('child_added',function(snapshot){
+        $rootScope.forgottenUser = snapshot.val();
+        $rootScope.forgottenUserName = snapshot.val().username;
+        $rootScope.forgottenUserEmail = snapshot.val().email;
+        $rootScope.forgottenUserPhone = snapshot.val().phone;
+        $rootScope.forgottenUserState = snapshot.val().state;
+        $rootScope.forgottenUserDistrict = snapshot.val().district;
+        $rootScope.forgottenUserCity = snapshot.val().city;
+        $rootScope.forgottenUserBloodgroup = snapshot.val().bloodgroup;
+        $rootScope.forgottenUserCommunication = snapshot.val().communication;
+        $rootScope.forgottenUserWish = snapshot.val().wish;
+      })
+      if($rootScope.forgottenUser != null){
+        $scope.string = randomString();
+        ref.orderByChild('phone').equalTo($rootScope.forgottenUserPhone).on('child_added',function(snapshot){
+          $rootScope.resetkey = snapshot.key();
+        });
+          var onComplete = function(error){
+            if(error){
+              alert("error");
+            }
+            else{
+              alert("success");
+            }
+          };
+          ref.child($rootScope.resetkey).set({
+                bloodgroup:$rootScope.forgottenUserBloodgroup,
+                city:$rootScope.forgottenUserCity,
+                communication:$rootScope.forgottenUserCommunication,
+                district:$rootScope.forgottenUserDistrict,
+                email:$rootScope.forgottenUserEmail,
+                password:$scope.string,
+                phone:$rootScope.forgottenUserPhone,
+                state:$rootScope.forgottenUserState,
+                username:$rootScope.forgottenUserName,
+                wish:$rootScope.forgottenUserWish
+              },onComplete);
+      }
+      else{
+        $ionicPopup.alert({
+          title:'Invalid user',
+          template : 'No user found with the given phone number'
+        });
+      }
+    }
+    
+})
 
 ;

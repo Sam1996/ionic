@@ -4,7 +4,7 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers','starter.services','starter.adminControllers','starter.adminServices','firebase','ngCordova'])
+angular.module('starter', ['ionic', 'starter.controllers','starter.services','starter.adminControllers','starter.adminServices','firebase','ngCordova','angularRandomString'])
 
 .run(function($ionicPlatform,$rootScope,$location,$state) {
   $ionicPlatform.ready(function() {
@@ -56,6 +56,13 @@ $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fr
     url: '/signup',
   templateUrl: 'templates/signup.html',
   controller:'signupController',
+  authenticate:'public'
+
+  })
+  .state('forgotPassword', {
+    url: '/forgotPassword',
+  templateUrl: 'templates/forgotPassword.html',
+  controller:'passwordController',
   authenticate:'public'
 
   })

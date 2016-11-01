@@ -200,8 +200,9 @@ angular.module('starter.services', [])
                   $ionicPopup.alert({
                     title : 'Success',
                     template : 'Profile updated successfully!'
+                  }).then(function(){
+                    $window.location.reload();
                   });
-                  $window.location.reload();
                 }
               };
               ref.child($rootScope.key).set({
