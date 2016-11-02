@@ -519,7 +519,6 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
     district : $scope.district,
     city : $scope.city,
     bloodgroup : $scope.bloodgroup,
-    communication : $scope.communication,
     wish : $scope.wish
   }
 
@@ -548,7 +547,6 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
           district : $scope.district,
           city : $scope.city,
           bloodgroup : $scope.bloodgroup,
-          communication : $scope.communication,
           wish : $scope.wish
         }
         console.log("successfully edited");
@@ -562,7 +560,6 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
       district : resetData.district,
       city : resetData.city,
       bloodgroup : resetData.bloodgroup,
-      communication : resetData.communication,
       wish : resetData.wish
     },onComplete);
 }
