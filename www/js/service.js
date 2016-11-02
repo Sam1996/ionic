@@ -205,7 +205,7 @@ angular.module('starter.services', [])
                   });
                 }
               };
-              ref.child($rootScope.key).set({
+              ref.child($rootScope.key).update({
                 bloodgroup:bloodgroup,
                 city:city,
                 communication:communication,

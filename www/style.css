@@ -139,3 +139,33 @@
   color: green;
   font-size: 20px;
 }
+.passResetInput{
+  text-align: center;
+  font-weight: bold;
+  color: green !important;
+}
+.title{
+  color: #34495e;
+  margin: 0;
+  font-size: 20px !important;
+}
+.title-icon{
+  color: #34495e;
+  font-size: 20px !important;
+}
+.edit-icon{
+  color: #2ecc71;
+  font-size: 20px !important;
+}
+.profile-item{
+  border:none;
+}
+.resetItemInput{
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-bottom: 4px;
+}
+.profile-item-toggle{
+  margin-top: 8px;
+  margin-bottom: 8px;
+}

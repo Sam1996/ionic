@@ -1,0 +1,126 @@
+<ion-view view-title="Edit Profile">
+	<ion-content class="has-header padding">
+	<!-- User Name -->
+		<p>Username</p>
+		<div class="item profile-item item-icon-left item-icon-right">
+			<i class="icon ion-android-person title-icon"></i>
+			<h3 class="title">{{username}}</h3>
+			<i class="icon ion-edit edit-icon" ng-init="canShowUsername = false" ng-click="canShowUsername = !canShowUsername"></i>
+		</div>
+		<div class="item item-input resetItemInput" ng-show="canShowUsername">
+			<input type="text" ng-model="resetData.username">
+			<button class="button button-balanced button-clear" ng-click="save(resetData)">Save</button>
+			<br><br>
+		</div>
+
+		<br>
+
+		<p>Personal Information</p>
+	<!-- Email -->
+
+		<div class="item profile-item item-icon-left item-icon-right">
+			<i class="icon ion-android-mail title-icon"></i>
+			<p>{{email}}</p>
+			<i class="icon ion-edit edit-icon" ng-init="canShowEmail = false" ng-click="canShowEmail = !canShowEmail"></i>
+		</div>
+		<div class="item item-input resetItemInput" ng-show="canShowEmail">
+			<input type="text" ng-model="resetData.email">
+			<button class="button button-balanced button-clear" ng-click="save(resetData)">Save</button>
+		</div>
+
+	<!-- Phone Number -->
+
+		<div class="item profile-item item-icon-left item-icon-right">
+			<i class="icon ion-android-call title-icon"></i>
+			<p>{{phone}}</p>
+			<i class="icon ion-edit edit-icon" ng-init="canShowPhone = false" ng-click="canShowPhone = !canShowPhone"></i>
+		</div>
+		<div class="item item-input resetItemInput" ng-show="canShowPhone">
+			<input type="text" ng-model="resetData.phone">
+			<button class="button button-balanced button-clear" ng-click="save(resetData)">Save</button>
+		</div>
+
+	<!-- State -->
+
+		<div class="item profile-item item-icon-left item-icon-right">
+			<i class="icon ion-ios-location title-icon"></i>
+			<p>{{state}}</p>
+			<i class="icon ion-edit edit-icon" ng-init="canShowState = false" ng-click="canShowState = !canShowState"></i>
+		</div>
+		<div class="item item-input item-select resetItemInput" ng-show="canShowState">
+			<select ng-model="resetData.state">
+	            <option ng-repeat="state in States" value="{{state.state}}">{{state.state}}</option>
+	          </select>
+			<button class="button button-balanced button-clear" ng-click="save(resetData)">Save</button>
+		</div>
+
+	<!-- District -->
+
+		<div class="item profile-item item-icon-left item-icon-right">
+			<i class="icon ion-ios-location title-icon"></i>
+			<p>{{district}}</p>
+			<i class="icon ion-edit edit-icon" ng-init="canShowDistrict = false" ng-click="canShowDistrict = !canShowDistrict"></i>
+		</div>
+		<div class="item item-input item-select resetItemInput" ng-show="canShowDistrict">
+			<select ng-model="resetData.district">
+	            <option ng-repeat="district in Districts | filter : {state: state}" value="{{district.district}}">{{district.district}}</option>
+	          </select>
+			<button class="button button-balanced button-clear" ng-click="save(resetData)">Save</button>
+		</div>
+
+	<!-- City -->
+
+		<div class="item profile-item item-icon-left item-icon-right">
+			<i class="icon ion-ios-location title-icon"></i>
+			<p>{{city}}</p>
+			<i class="icon ion-edit edit-icon" ng-init="canShowCity = false" ng-click="canShowCity = !canShowCity"></i>
+		</div>
+		<div class="item item-input item-select resetItemInput" ng-show="canShowCity">
+			<select ng-model="resetData.city">
+	            <option ng-repeat="area in Areas | filter : {district: district}" value="{{area.city}}">{{area.city}}</option>
+	          </select>
+			<button class="button button-balanced button-clear" ng-click="save(resetData)">Save</button>
+		</div>
+
+	<!-- Blood Group -->
+
+		<div class="item profile-item item-icon-left item-icon-right">
+			<i class="icon ion-waterdrop title-icon"></i>
+			<p>{{bloodgroup}}</p>
+			<i class="icon ion-edit edit-icon" ng-init="canShowBlood = false" ng-click="canShowBlood = !canShowBlood"></i>
+		</div>
+		<div class="item item-input item-select resetItemInput" ng-show="canShowBlood">
+			<select ng-model="resetData.bloodgroup">
+	            <option value="A+ve">A+ve</option>
+	            <option value="A-ve">A-ve</option>
+	            <option value="B+ve">B+ve</option>
+	            <option value="B-ve">B-ve</option>
+	            <option value="AB+ve">AB+ve</option>
+	            <option value="AB-ve">AB-ve</option>
+	            <option value="O+ve">O+ve</option>
+	            <option value="O-ve">O-ve</option>
+	          </select>
+			<button class="button button-balanced button-clear" ng-click="save(resetData)">Save</button>
+		</div>
+
+	<!-- Communication -->
+
+		<input type="hidden" ng-init="resetData.communication = false" ng-model="resetData.communication">
+
+		<hr>
+
+	<!-- Wish -->
+
+		<li class="item item-toggle profile-item profile-item-toggle">
+             Wish to be a donor ?
+             <label class="toggle toggle-balanced">
+               <input type="checkbox" ng-init="resetData.wish = true" ng-model="resetData.wish">
+               <div class="track">
+                 <div class="handle"></div>
+               </div>
+             </label>
+          </li>
+          <button class="button button-balanced button-clear col text-right " ng-click="save(resetData)">Save</button>
+
+	</ion-content>
+</ion-view>

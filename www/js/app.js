@@ -115,12 +115,12 @@ $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fr
   })
 
 
-  .state('app.editProfile', {
-    url: '/editProfile',
+  .state('app.resetProfile', {
+    url: '/resetProfile',
     views: {
       'menuContent': {
-        templateUrl: 'templates/editProfile.html',
-        controller: 'profileController'
+        templateUrl: 'templates/resetProfile.html',
+        controller: 'resetProfileController'
       }
     },
     authenticate:'secure'

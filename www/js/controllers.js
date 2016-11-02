@@ -32,7 +32,7 @@ ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',funct
   .controller('requestCtrl', function($scope,$rootScope,AuthService,RequestService,$cordovaSms,$ionicPopup, $firebaseArray) {
 
     $scope.request = function(requestData){
-      var username = $rootScope.thisUser;//window.localStorage.getItem('currentUser');
+      var username = window.localStorage.getItem('currentUser');
       var patientName = requestData.username;
       var attendee = requestData.attendeeName;
       var attendeeNumber = requestData.attendeeNumber;
@@ -168,11 +168,12 @@ $scope.login = function(loginData){
 
 })
 
-.controller('myRequestController', function($scope, $stateParams,reqData,$rootScope) {
+.controller('myRequestController', function($scope, $stateParams,reqData,$rootScope, $firebaseArray) {
 
   $scope.currentUSerRequest = window.localStorage.getItem('currentUser');
   $scope.myRequests = reqData;
-  /*var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'requests');
+
+  /*  var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'requests');
   ref.orderByChild("patientName").equalTo($scope.currentUSerRequest).on('child_added',function(snapshot){
     $scope.myRequests = snapshot.val();
   });*/
@@ -322,7 +323,7 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
   adminProfileService.edit(username,email,phone,state,district,city,bloodgroup,communication,wish,password);
 }
 
-//area reference
+  //area reference
   var areaRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Areas');
   var areas = $firebaseArray(areaRef);
   //districts refference
@@ -396,10 +397,11 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
 
 .controller('passwordController', function($scope, $stateParams, $firebaseArray,$rootScope,randomString,$ionicPopup) {
     var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + "newUser");
+    
     $scope.reset = function(resetData){
-      var phone = resetData.phone;
-      ref.orderByChild("phone").equalTo(phone).on('child_added',function(snapshot){
-        $rootScope.forgottenUser = snapshot.val();
+      $scope.forgottenPhone = resetData.phone;
+      ref.orderByChild("phone").equalTo($scope.forgottenPhone).on('child_added',function(snapshot){
+        $scope.forgottenUser = snapshot.val();
         $rootScope.forgottenUserName = snapshot.val().username;
         $rootScope.forgottenUserEmail = snapshot.val().email;
         $rootScope.forgottenUserPhone = snapshot.val().phone;
@@ -410,20 +412,21 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
         $rootScope.forgottenUserCommunication = snapshot.val().communication;
         $rootScope.forgottenUserWish = snapshot.val().wish;
       })
-      if($rootScope.forgottenUser != null){
+      if($scope.forgottenUserPhone == $scope.forgottenPhone){
         $scope.string = randomString();
-        ref.orderByChild('phone').equalTo($rootScope.forgottenUserPhone).on('child_added',function(snapshot){
-          $rootScope.resetkey = snapshot.key();
+        ref.orderByChild('phone').equalTo($scope.forgottenPhone).on('child_added',function(snapshot){
+          $scope.resetKey = snapshot.key();
         });
           var onComplete = function(error){
             if(error){
-              alert("error");
+              console.log("error");
             }
             else{
-              alert("success");
+              console.log("success");
+              $scope.forgottenPhone = null;
             }
           };
-          ref.child($rootScope.resetkey).set({
+          ref.child($scope.resetKey).set({
                 bloodgroup:$rootScope.forgottenUserBloodgroup,
                 city:$rootScope.forgottenUserCity,
                 communication:$rootScope.forgottenUserCommunication,
@@ -446,4 +449,123 @@ $scope.editProfile = function(username,email,phone,state,district,city,bloodgrou
     
 })
 
+
+.controller('resetProfileController', function($state, $scope, $stateParams, $firebaseArray,$rootScope,$ionicLoading,$window) {
+ 
+  var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'newUser');
+    ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',function(snapshot){
+      $scope.username = snapshot.val().username;
+      $scope.email = snapshot.val().email;
+      $scope.phone = snapshot.val().phone;
+      $scope.state = snapshot.val().state;
+      $scope.district = snapshot.val().district;
+      $scope.city = snapshot.val().city;
+      $scope.bloodgroup = snapshot.val().bloodgroup;
+      $scope.communication = snapshot.val().communication;
+      $scope.wish = snapshot.val().wish;
+      $scope.password = snapshot.val().password;
+    });
+  //area reference
+  var areaRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Areas');
+  var areas = $firebaseArray(areaRef);
+  //districts refference
+  var distRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Districts');
+  var districts = $firebaseArray(distRef);
+  //States reference
+  var stateRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'States');
+  var states = $firebaseArray(stateRef);
+
+  $scope.Areas = areas;
+  $scope.Districts = districts;
+  $scope.States = states;
+
+  getData = function(){
+
+    var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'newUser');
+    ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',function(snapshot){
+      $scope.username = snapshot.val().username;
+      $scope.email = snapshot.val().email;
+      $scope.phone = snapshot.val().phone;
+      $scope.state = snapshot.val().state;
+      $scope.district = snapshot.val().district;
+      $scope.city = snapshot.val().city;
+      $scope.bloodgroup = snapshot.val().bloodgroup;
+      $scope.communication = snapshot.val().communication;
+      $scope.wish = snapshot.val().wish;
+      $scope.password = snapshot.val().password;
+    });
+
+    //area reference
+    var areaRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Areas');
+    var areas = $firebaseArray(areaRef);
+    //districts refference
+    var distRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'Districts');
+    var districts = $firebaseArray(distRef);
+    //States reference
+    var stateRef = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'States');
+    var states = $firebaseArray(stateRef);
+
+    $scope.Areas = areas;
+    $scope.Districts = districts;
+    $scope.States = states;
+
+  }
+
+  $scope.resetData = {
+    username : $scope.username,
+    email : $scope.email,
+    phone : $scope.phone,
+    state : $scope.state,
+    district : $scope.district,
+    city : $scope.city,
+    bloodgroup : $scope.bloodgroup,
+    communication : $scope.communication,
+    wish : $scope.wish
+  }
+
+  $scope.save = function(resetData){
+    $ionicLoading.show({
+      template : "Please wait..."
+    });
+    var ref = new Firebase("https://cc-bloodapp.firebaseio.com/" + 'newUser');
+    ref.orderByChild('phone').equalTo($rootScope.currentUser).on('child_added',function(snapshot){
+      $rootScope.key = snapshot.key();
+    })
+    function onComplete(error){
+      if(error){
+        $ionicLoading.hide();
+        console.log(error);
+      }
+      else{
+        getData();
+        $ionicLoading.hide();
+        $state.reload();
+        $scope.resetData = {
+          username : $scope.username,
+          email : $scope.email,
+          phone : $scope.phone,
+          state : $scope.state,
+          district : $scope.district,
+          city : $scope.city,
+          bloodgroup : $scope.bloodgroup,
+          communication : $scope.communication,
+          wish : $scope.wish
+        }
+        console.log("successfully edited");
+      }
+    }
+    ref.child($rootScope.key).update({
+      username : resetData.username,
+      email: resetData.email,
+      phone : resetData.phone,
+      state: resetData.state,
+      district : resetData.district,
+      city : resetData.city,
+      bloodgroup : resetData.bloodgroup,
+      communication : resetData.communication,
+      wish : resetData.wish
+    },onComplete);
+}
+
+})
 ;
