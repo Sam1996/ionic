@@ -1,6 +1,6 @@
-<ion-side-menus  reload='true' enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false">
   <ion-side-menu-content>
-    <ion-nav-bar class="bar-assertive">
+    <ion-nav-bar class="bar-balanced">
       <ion-nav-back-button>
       </ion-nav-back-button>
 
@@ -8,54 +8,89 @@
         <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
         </button>
       </ion-nav-buttons>
+      <ion-nav-buttons side="right">
+          <button class="button button-clear button-light button-small header-button">
+            <i class="icon ion-ios-search-strong padding" ng-init="canShowHeader = false" ng-click="canShowHeader = !canShowHeader"></i>
+          </button>
+          <button class="button button-clear button-light button-small header-button"><i class="icon ion-android-cart padding"></i></button>
+      </ion-nav-buttons>
     </ion-nav-bar>
+
+    <!--Sub header search bar-->
+
+    <div class="bar bar-subheader bar-balanced" ng-show="canShowHeader">
+        <h2 class="title">Sub Header</h2>
+    </div>
     <ion-nav-view name="menuContent"></ion-nav-view>
   </ion-side-menu-content>
 
   <ion-side-menu side="left">
-    <ion-content>
-      <div class="profileBackground">
-        <h4>
-          Hi {{thisUser}}!
-        </h4>
-      </div>
-      <ion-list class="menu-list">
-        <ion-item menu-close href="#/login" class="item-icon-left menu-icon menu-item-list" ng-show="isLoggedin">
-          <i class="icon ion-log-in"></i>
+    <!--<ion-header-bar class="bar-assertive">
+      <h1 class="title">Left</h1>
+    </ion-header-bar>-->
+    <ion-content class="menu-content">
+      <ion-list>
+        <div class="item item-divider">
+          Menu
+        </div>
+        <ion-item menu-close href="#/app/home" class="menuItem item-icon-right">
+          Home
+          <i class="icon ion-ios-arrow-thin-right"></i>
+        </ion-item>
+        <ion-item menu-close href="" ng-click="login()" class="menuItem item-icon-right">
           Login
+          <i class="icon ion-ios-arrow-thin-right"></i>
         </ion-item>
-        <ion-item menu-close href="#/signup" class="item-icon-left menu-icon menu-item-list" ng-show="isLoggedin">
-          <i class="icon ion-ios-compose"></i>
-          Signup
+        <ion-item menu-close href="#/app/search" class="menuItem item-icon-right">
+          Search
+          <i class="icon ion-ios-arrow-thin-right"></i>
         </ion-item>
-          <ion-item menu-close href="#/app/home" class="item-icon-left menu-icon menu-item-list">
-              <i class="icon ion-home"></i>
-              Home
+        <ion-item menu-close href="#/app/browse" class="menuItem item-icon-right">
+          Browse
+          <i class="icon ion-ios-arrow-thin-right"></i>
+        </ion-item>
+        <ion-item menu-close href="#/app/playlists" class="menuItem item-icon-right">
+          Playlists
+          <i class="icon ion-ios-arrow-thin-right"></i>
+        </ion-item>
+        <div class="item item-divider item-icon-right">
+          Categories
+          <i class="icon ion-ios-plus-empty" ng-init="canShowItem = false" ng-click="canShowItem = !canShowItem"></i>
+        </div>
+        <div ng-show="canShowItem">
+          <ion-item menu-close href="#/app/home" class="menuItem item-icon-right">
+            Vegetables
+            <i class="icon ion-ios-arrow-thin-right"></i>
           </ion-item>
-        <ion-item menu-close href="#/app/resetProfile" class="item-icon-left menu-icon menu-item-list">
-          <i class="icon ion-edit"></i>
-          Edit Profile
-        </ion-item>
-        <ion-item menu-close href="#/app/myrequest" class="item-icon-left menu-icon menu-item-list">
-          <i class="icon ion-clipboard"></i>
-          My Requests
-        </ion-item>
-        <ion-item menu-close href="#/app/requests" class="item-icon-left menu-icon menu-item-list">
-          <i class="icon ion-plus-circled"></i>
-          Make Request
-        </ion-item>
-        <ion-item menu-close href="#/app/donorList" class="item-icon-left menu-icon menu-item-list" ng-show="users">
-          <i class="icon ion-ios-list"></i>
-          Donors list
-        </ion-item>
-        <ion-item menu-close href="#/app/recepientList" class="item-icon-left menu-icon menu-item-list" ng-show="users">
-          <i class="icon ion-ios-list-outline"></i>
-          Recepients list
-        </ion-item>
-        <ion-item menu-close ng-click="logout()" class="item-icon-left menu-icon menu-item-list">
-          <i class="icon ion-log-out"></i>
-          Logout
-        </ion-item>
+          <ion-item menu-close href="" ng-click="login()" class="menuItem item-icon-right">
+            Household
+            <i class="icon ion-ios-arrow-thin-right"></i>
+          </ion-item>
+          <ion-item menu-close href="#/app/fruits" class="menuItem item-icon-right">
+            Fruits
+            <i class="icon ion-ios-arrow-thin-right"></i>
+          </ion-item>
+          <ion-item menu-close href="#/app/browse" class="menuItem item-icon-right">
+            Groceries
+            <i class="icon ion-ios-arrow-thin-right"></i>
+          </ion-item>
+          <ion-item menu-close href="#/app/playlists" class="menuItem item-icon-right">
+            Non-veg
+            <i class="icon ion-ios-arrow-thin-right"></i>
+          </ion-item>
+          <ion-item menu-close href="#/app/search" class="menuItem item-icon-right">
+            Bread & Diary
+            <i class="icon ion-ios-arrow-thin-right"></i>
+          </ion-item>
+          <ion-item menu-close href="#/app/browse" class="menuItem item-icon-right">
+            Personal Care
+            <i class="icon ion-ios-arrow-thin-right"></i>
+          </ion-item>
+          <ion-item menu-close href="#/app/playlists" class="menuItem item-icon-right">
+            Beverages
+            <i class="icon ion-ios-arrow-thin-right"></i>
+          </ion-item>
+        </div>
       </ion-list>
     </ion-content>
   </ion-side-menu>

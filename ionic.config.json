@@ -1,4 +1,13 @@
 {
-  "name": "donor",
-  "app_id": "3590bc87"
+  "name": "shopper",
+  "app_id": "",
+  "gulpStartupTasks": [
+    "sass",
+    "watch"
+  ],
+  "watchPatterns": [
+    "www/**/*",
+    "!www/lib/**/*",
+    "!www/**/*.map"
+  ]
 }

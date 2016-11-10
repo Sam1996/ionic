@@ -1,171 +1,58 @@
-/* Empty. Add your own CSS if you like */
-.questionText{
-  color: #ef473a;
+.bar-header{
+	height: 48px;
 }
-.myRequestContent{
-  background: #ecf0f1;
+.has-header{
+	top: 48;
 }
-.red-icon{
-  color: #ef473a;
+.menuItem{
+	border: none;
 }
-.green-icon{
-  color: #33cd5f;
+.menu-content{
+	background: #C0CA33;
 }
-.icon.card-icon{
-  font-size: 18px;
+.menuItem.item{
+	background: transparent;
 }
-.card-footer{
-  background: #ffffff;
-  color: #3a3a3a;
+.menuItem .item-content{
+	background: transparent;
+	color: #fff;
+	padding-bottom: 12px;
+	padding-top: 12px;
 }
-.card-item p strong{
-  color: #34465d;
+.menuItem a:active,.menuItem a:focus,.menuItem a:visited{
+	background: #9E9D24;
 }
-.pull-right{
-  position: relative;
-  right: 0;
+.menuItem a.activated{
+	background: #9E9D24;
 }
-.item-text-wrap p {
-  font-size: 14px;
+.slide-box{
+	height: 200px;
 }
-.card-footer .button{
-  margin:0px;
+.green{
+	color: #9E9D24;
 }
-.menu-icon i.icon{
-  font-size: 18px;
-  color : #34465d;
+.category-image{
+	width: 40px;
+	height: 40px;
 }
-.menu-list .menu-item-list{
-  border: none;
-  font-size: 14px;
+.category{
+	height: 110px;
+	margin-bottom: 10px;
+	color: #333;
+	text-decoration: none;
 }
-.menu-list .menu-item-list a{
-  padding-top:12px;
-  padding-bottom: 12px;
+.item-divider{
+	background: #9E9D24;
+	border: #9E9D24;
 }
-.loginForm{
-  /*display: flex;
-  align-self: center;
-  align-content: space-around;
-  flex-direction: column;
-  justify-content: center;*/
-  background: url('img/bg.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.price{
+	color:#d32f2f;
+	font-size: 18px !important;
 }
-.loginForm form{
-  position: absolute;
-  width: 100%;
-  margin-top: 60%;
-
+.header-button .icon{
+	font-size: 16px !important;
+	color: #9E9D24;
 }
-.profileBackground{
-  min-height: 145px;
-  background: url('img/menu.jpg');
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.profileBackground h4 {
-  color: #ddd;
-  opacity: 0.7;
-}
-.donor-name{
-  color : #34465d;
-}
-.location i{
-  float: left;
-}
-.location p{
-  float: left;
-}
-.header{
-  min-height: 175px;
-  max-height: 175px;
-  background: url('img/redback.jpg');
-  background-position: center;
-  background-size: cover;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.text-white{
-  color: #f7f7f7;
-  opacity: 0.7;
-  font-weight: medium;
-  font-size: 18px
-}
-.text-white small{
-  font-size: 11px;
-}
-.body .item{
-  border:none;
-}
-.body .item .icon{
-  font-size: 20px;
-}
-.postPage{
-    background: #ecf0f1;
-}
-.post{
-    margin-top:0px !important;
-}
-.post-footer{
-    background: #ffffff;
-}
-.logo h4{
-  position: relative;
-  top: -70px;
-  color: #ffffff;
-  text-align: center;
-}
-.loginForm .item-checkbox{
-  background: transparent;
-  border: none;
-  color: #ffffff;
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-.urgent{
-  color: red;
-}
-.notUrgent{
-  color: green;
-}
-.label-balanced{
-  color: green;
-  font-size: 20px;
-}
-.passResetInput{
-  text-align: center;
-  font-weight: bold;
-  color: green !important;
-}
-.title{
-  color: #34495e;
-  margin: 0;
-  font-size: 20px !important;
-}
-.title-icon{
-  color: #34495e;
-  font-size: 20px !important;
-}
-.edit-icon{
-  color: #2ecc71;
-  font-size: 20px !important;
-}
-.profile-item{
-  border:none;
-}
-.resetItemInput{
-  padding-top: 0;
-  padding-bottom: 0;
-  margin-bottom: 4px;
-}
-.profile-item-toggle{
-  margin-top: 8px;
-  margin-bottom: 8px;
+.item-complex{
+	padding-right: 0;
 }
