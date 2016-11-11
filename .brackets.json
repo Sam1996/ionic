@@ -1,0 +1,7 @@
+{
+    "jscodehints.detectedExclusions": [
+        "D:/WorkFiles/donor/platforms/android/build/intermediates/assets/debug/www/lib/angular-ui-router/src/common.js",
+        "D:/WorkFiles/donor/platforms/android/build/intermediates/assets/debug/www/lib/angular-ui-router/src/resolve.js",
+        "D:/WorkFiles/donor/platforms/android/build/intermediates/assets/debug/www/lib/angular-ui-router/src/state.js"
+    ]
+}

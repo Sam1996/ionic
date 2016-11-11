@@ -1,25 +1,34 @@
-<ion-modal-view>
-  <ion-header-bar>
+<ion-view>
+  <!--<ion-header-bar>
     <h1 class="title">Login</h1>
     <div class="buttons">
       <button class="button button-clear" ng-click="closeLogin()">Close</button>
     </div>
-  </ion-header-bar>
-  <ion-content>
-    <form ng-submit="doLogin()">
+  </ion-header-bar>-->
+  <ion-content class="padding loginForm">
+    <form>
+      <div class="logo">
+          <h4>Blood Donation</h4>
+        </div>
       <div class="list">
+
         <label class="item item-input">
-          <span class="input-label">Username</span>
-          <input type="text" ng-model="loginData.username">
+          <input type="text" ng-model="loginData.phone" placeholder="Phone Number">
         </label>
         <label class="item item-input">
-          <span class="input-label">Password</span>
-          <input type="password" ng-model="loginData.password">
+          <input type="password" ng-model="loginData.password" placeholder="Password">
         </label>
-        <label class="item">
-          <button class="button button-block button-positive" type="submit">Log in</button>
-        </label>
+          
+      </div>
+      <ion-checkbox ng-init="loginData.remember = true" ng-model="loginData.remember" >Remember me</ion-checkbox>
+      <!--<div ng-controller="PostController">
+        <button class="button button-block button-stable" ng-click="addData()">Add Data</button>
+      </div>-->
+      <button class="button button-full button-energized" ng-click="login(loginData)">Log in</button>
+      <div class="row">
+        <a href="#/signup" class="button button-clear button-light button-block col-50">Sign Up</a>
+        <a href="#/forgotPassword" class="button button-clear button-light button-block col-50">Forgot password</a>
       </div>
     </form>
   </ion-content>
-</ion-modal-view>
+</ion-view>
